@@ -1,0 +1,9 @@
+{{patient.prenom}} {{patient.nom}}
+
+<span *ngIf="patient.sexe === 0">Homme</span>
+
+<span *ngIf="patient.sexe === 1">Femme</span>
+
+{{patient.numeroSecuriteSociale}}
+<span>{{patient.adresse.etage}}</span>
+<span>{{patient.adresse.numero}}, {{patient.adresse.rue}} {{patient.adresse.ville}} {{patient.adresse.codePostal}}</span>

@@ -1,0 +1,50 @@
+.nurse-card {
+  margin: 20px;
+}
+
+.nurse-info {
+  padding: 20px 20px 0 20px;
+}
+
+.nurse-name{
+  display: block;
+  vertical-align: center;
+  float: right;
+}
+
+.card {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.nurse-info > img {
+  width: 80px;
+  height: 80px;
+}
+
+.nurse-info > h6 {
+
+}
+
+.card-body {
+  padding-top: 0;
+}
+
+.btn-circle {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 12px;
+  line-height: 1.428571429;
+  border-radius: 15px;
+}
+
+hr {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+img, .nurse-name {
+  display: inline-block;
+}

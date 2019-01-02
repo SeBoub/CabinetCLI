@@ -1,0 +1,23 @@
+<div class="card">
+  <div class="nurse-info">
+    <img [src]="picture" class="card-img-top" alt="Infirmier image">
+    <div class="nurse-name">
+      <h5 class="card-title">{{infirmier.prenom}}</h5>
+      <h6 class="card-subtitle text-muted">{{infirmier.nom}}</h6>
+    </div>
+  </div>
+  <div class="card-body">
+    <div style="margin-top: 20px; text-align: center ">
+      <hr>
+      <span style="font-size: 15px;font-weight: bold;">Patients</span>
+      <button class="btn btn-circle btn-success ml-2">
+        <i class="fas fa-plus"></i>
+      </button>
+    </div>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item" *ngFor="let patient of patients">
+      <app-patient [patient]="patient"></app-patient>
+    </li>
+  </ul>
+</div>
