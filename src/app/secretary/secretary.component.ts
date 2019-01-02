@@ -9,26 +9,20 @@ import {CabinetInterface} from '../dataInterfaces/cabinet';
 })
 export class SecretaryComponent implements OnInit {
   private data: CabinetInterface;
-  private breakpoint;
 
   constructor(cms: CabinetMedicalService) {
     this.initCabinet(cms);
   }
 
-
   async initCabinet(cms: CabinetMedicalService) {
     this.data = await cms.getData('/data/cabinetInfirmier.xml');
   }
 
-  ngOnInit() {
-    this.breakpoint = (window.innerWidth <= 600) ? 1 : 3;
-  }
+  ngOnInit() {}
 
   get infirmiers() {
-    return this.data.infirmiers;
-  }
+    console.log(this.data);
 
-  onResize(event) {
-    this.breakpoint = (event.target.innerWidth <= 600) ? 1 : 3;
+    return this.data.infirmiers;
   }
 }
