@@ -1,0 +1,11 @@
+.patient-name{
+  font-size: 18px;
+}
+
+p {
+  margin: 5px 0 0;
+}
+
+.patient-elem {
+  text-decoration: underline;
+}

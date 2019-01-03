@@ -1,9 +1,26 @@
-{{patient.prenom}} {{patient.nom}}
+<div>
+  <span class="patient-name" style="vertical-align: bottom">{{patient.prenom}} {{patient.nom}}</span>
+  <button class="btn" style="float: right; padding: 0" type="button" data-toggle="collapse" [attr.data-target]="'#'+patient.nom+'-'+patient.prenom" aria-expanded="false" [attr.aria-controls]="patient.nom+'-'+patient.prenom">
+    <i class="fas fa-chevron-down"></i>
+  </button>
+</div>
+<div class="collapse"  id="{{patient.nom}}-{{patient.prenom}}">
+  <div style="color: darkgrey">
+    <p>
+      <span class="patient-elem">Sexe</span> :
+      <span *ngIf="patient.sexe === 0">Homme</span>
+      <span *ngIf="patient.sexe === 1">Femme</span>
+    </p>
+    <p>
+      <span class="patient-elem">N° sécu</span> : {{patient.numeroSecuriteSociale}}
+    </p>
+    <p>
+      <span class="patient-elem">Adresse</span> : <span *ngIf="patient.adresse.numero !== ''">{{patient.adresse.numero}},</span> {{patient.adresse.rue}} {{patient.adresse.ville}} {{patient.adresse.codePostal}}
+    </p>
+    <p *ngIf="patient.adresse.etage !== ''">
+      <span *ngIf="patient.adresse.etage === '1'"><span class="patient-elem">Étage</span> : {{patient.adresse.etage}} er</span>
+      <span *ngIf="patient.adresse.etage !== '1'"><span class="patient-elem">Étage</span> : {{patient.adresse.etage}} ème</span>
+    </p>
+  </div>
+</div>
 
-<span *ngIf="patient.sexe === 0">Homme</span>
-
-<span *ngIf="patient.sexe === 1">Femme</span>
-
-{{patient.numeroSecuriteSociale}}
-<span>{{patient.adresse.etage}}</span>
-<span>{{patient.adresse.numero}}, {{patient.adresse.rue}} {{patient.adresse.ville}} {{patient.adresse.codePostal}}</span>

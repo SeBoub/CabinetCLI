@@ -21,8 +21,10 @@ export class SecretaryComponent implements OnInit {
   ngOnInit() {}
 
   get infirmiers() {
-    console.log(this.data);
-
     return this.data.infirmiers;
+  }
+
+  get nonAffect() {
+    return this.data.patientsNonAffectes;
   }
 }
