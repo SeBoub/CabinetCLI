@@ -4,6 +4,7 @@ import {CabinetInterface} from '../dataInterfaces/cabinet';
 import {Adresse} from '../dataInterfaces/adresse';
 import {sexeEnum} from '../dataInterfaces/sexe';
 import {PatientInterface} from '../dataInterfaces/patient';
+import {FormControl, FormGroup} from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +32,16 @@ export class CabinetMedicalService {
       rue: (node = root.querySelector('adresse > rue')) ? node.textContent : '',
       numero: (node = root.querySelector('adresse > numéro')) ? node.textContent : '',
       etage: (node = root.querySelector('adresse > étage')) ? node.textContent : ''
+    };
+  }
+
+  public static getAdresseFromFormGroup(adresse: any): Adresse {
+    return {
+      ville: adresse.ville,
+      codePostal: adresse.codePostal,
+      rue: adresse.numRue,
+      numero: adresse.numSecu,
+      etage: adresse.etage,
     };
   }
 
@@ -116,6 +127,4 @@ export class CabinetMedicalService {
     }
     return null;
   }
-
-
 }

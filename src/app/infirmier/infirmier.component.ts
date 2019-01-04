@@ -1,8 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {InfirmierInterface} from '../dataInterfaces/infirmier';
-import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {CabinetMedicalService} from '../services/cabinet-medical.service';
 import {PatientInterface} from '../dataInterfaces/patient';
+import {sexeEnum} from '../dataInterfaces/sexe';
 
 @Component({
   selector: 'app-infirmier',
@@ -13,6 +14,7 @@ export class InfirmierComponent implements OnInit {
   @Input() infirmier: InfirmierInterface;
   addNewPatientForm: FormGroup;
   newPatient: PatientInterface;
+  private submitted = false;
 
   constructor(private formBuilder: FormBuilder, private cms: CabinetMedicalService) {
     this.addNewPatientForm = InfirmierComponent.createFormGroup(formBuilder);
@@ -20,16 +22,16 @@ export class InfirmierComponent implements OnInit {
 
   public static createFormGroup(formBuilder: FormBuilder) {
     return formBuilder.group({
-      nom: '',
-      prenom: '',
-      sexe: 'H',
-      numSecu: '',
+      nom: ['', [Validators.required, Validators.minLength(2)]],
+      prenom: ['', [Validators.required]],
+      sexe: ['H', [Validators.required]],
+      numSecu: ['', [Validators.required]],
       adresse: formBuilder.group({
-        ville: '',
-        codePostal: '',
-        rue: '',
-        etage: '',
-        numRue: ''
+        ville: ['', [Validators.required]],
+        codePostal: ['', [Validators.required]],
+        rue: ['', [Validators.required]],
+        etage: ['', [Validators.required]],
+        numRue: ['', [Validators.required]]
       })
     });
   }
@@ -38,20 +40,27 @@ export class InfirmierComponent implements OnInit {
 
   }
 
-  onSubmit() {
-    // Make sure to create a deep copy of the form-model
-    const result = Object.assign({}, this.addNewPatientForm.value);
-    result.adresse = Object.assign({}, result.adresse);
+  get f() { return this.addNewPatientForm.controls; }
 
-    this.newPatient.nom = this.addNewPatientForm.get('nom').value;
-    this.newPatient.prenom = this.addNewPatientForm.get('prenom').value;
-    this.newPatient.sexe = this.addNewPatientForm.get('sexe').value;
-    this.newPatient.numeroSecuriteSociale = this.addNewPatientForm.get('numSecu').value;
+  async onSubmit() {
+    this.submitted = true;
 
-    this.newPatient.adresse.numero = result.adresse.numRue;
+    if (this.addNewPatientForm.invalid) {
+      return;
+    }
 
-    // Do useful stuff with the gathered data
-    console.log(this.newPatient);
+    this.newPatient = this.createPatient();
+    await this.cms.addPatient(this.newPatient);
+  }
+
+  createPatient(): PatientInterface {
+    return {
+      prenom: this.addNewPatientForm.value.prenom,
+      nom: this.addNewPatientForm.value.nom,
+      sexe: this.addNewPatientForm.value.sexe === 'M' ? sexeEnum.M : sexeEnum.F,
+      numeroSecuriteSociale: this.addNewPatientForm.value.numSecu,
+      adresse: CabinetMedicalService.getAdresseFromFormGroup(this.addNewPatientForm.value.adresse)
+    };
   }
 
   get picture() {

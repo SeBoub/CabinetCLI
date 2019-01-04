@@ -14,6 +14,7 @@ import {MatGridListModule} from '@angular/material';
 import { NavigationComponent } from './navigation/navigation.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ReactiveFormsModule} from '@angular/forms';
+import { AddPatientComponent } from './add-patient/add-patient.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import {ReactiveFormsModule} from '@angular/forms';
     SecretaryComponent,
     InfirmierComponent,
     PatientComponent,
-    NavigationComponent
+    NavigationComponent,
+    AddPatientComponent
   ],
   imports: [
     BrowserModule,
