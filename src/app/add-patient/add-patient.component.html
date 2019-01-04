@@ -1,0 +1,114 @@
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Nouveau patient</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="addNewPatientForm">
+          <div class="row">
+            <div class="form-group col-md-5">
+              <label class="col-form-label">
+                <span>Nom:</span>
+                <input type="text" class="form-control" formControlName="nom" [ngClass]="{ 'is-invalid': submitted && f.nom.errors }">
+                <div *ngIf="submitted && f.nom.errors" class="invalid-feedback">
+                  <div *ngIf="f.nom.errors.required">Nom requis</div>
+                </div>
+              </label>
+            </div>
+            <div class="form-group col-md-4">
+              <label  class="col-form-label">
+                <span>Prénom:</span>
+                <input type="text" class="form-control" formControlName="prenom">
+                <div *ngIf="submitted && f.prenom.errors" class="invalid-feedback">
+                  <div *ngIf="f.prenom.errors.required">Prénom requis</div>
+                </div>
+              </label>
+            </div>
+            <div class="form-group col-md-3" style="display: inline-block">
+              <label class="col-form-label">
+                <span>Sexe:</span>
+                <select class="form-control" formControlName="sexe">
+                  <option value="H">Homme</option>
+                  <option value="F">Femme</option>
+                </select>
+                <div *ngIf="submitted && f.sexe.errors" class="invalid-feedback">
+                  <div *ngIf="f.sexe.errors.required">Sexe requis</div>
+                </div>
+              </label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-form-label col-md-12">
+              <span>N° Sécu:</span>
+              <input type="number" class="form-control" formControlName="numSecu">
+              <div *ngIf="submitted && f.numSecu.errors" class="invalid-feedback">
+                <div *ngIf="f.numSecu.errors.required">Numéro de sécu requis</div>
+              </div>
+            </label>
+          </div>
+          <div style="text-align: center">
+            <hr>
+            <span style="text-align: center; font-weight: bold">ADRESSE</span>
+          </div>
+          <div formGroupName="adresse">
+            <div class="row">
+              <div class="form-group col-sm-3">
+                <label class="col-form-label">
+                  <span>Numéro:</span>
+                  <input type="number" class="form-control" formControlName="numRue">
+                </label>
+              </div>
+              <div class="form-group col-sm-9">
+                <label class="col-form-label">
+                  <span>Rue:</span>
+                  <input type="text" class="form-control" formControlName="rue">
+                  <div *ngIf="submitted && f.rue.errors" class="invalid-feedback">
+                    <div *ngIf="f.rue.errors.required">Nom de rue requis</div>
+                  </div>
+                </label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-md-6">
+                <label class="col-form-label">
+                  <span>Ville:</span>
+                  <input type="text" class="form-control" formControlName="ville">
+                  <div *ngIf="submitted && f.ville.errors" class="invalid-feedback">
+                    <div *ngIf="f.ville.errors.required">Nom de la ville requis</div>
+                  </div>
+                </label>
+              </div>
+              <div class="form-group col-md-6">
+                <label class="col-form-label">
+                  <span>Code Postal:</span>
+                  <input type="text" class="form-control" formControlName="codePostal">
+                  <div *ngIf="submitted && f.codePostal.errors" class="invalid-feedback">
+                    <div *ngIf="f.prenom.codePostal.required">Code postal requis</div>
+                  </div>
+                </label>
+              </div>
+              <div class="form-group col-md-12">
+                <label class="col-form-label">
+                  <span>Étage:</span>
+                  <input type="number" min="0" class="form-control" formControlName="etage">
+                  <div *ngIf="submitted && f.etage.errors" class="invalid-feedback">
+                    <div *ngIf="f.etage.errors.required">Numéro d'étage requis</div>
+                  </div>
+                </label>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Annuler</button>
+        <button (click)="onSubmit()" type="submit" class="btn btn-primary">Valider</button>
+      </div>
+    </div>
+  </div>
+</div>
