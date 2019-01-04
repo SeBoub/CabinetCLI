@@ -10,9 +10,6 @@
     <div style="margin-top: 20px; text-align: center ">
       <hr>
       <span style="font-size: 15px;font-weight: bold;">Patients</span>
-      <button class="btn btn-circle btn-success ml-2" data-toggle="modal" data-target="#exampleModalLong">
-        <i class="fas fa-plus"></i>
-      </button>
     </div>
   </div>
   <ul class="list-group list-group-flush">
@@ -23,55 +20,91 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Nouveau patient</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-
-        Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
-
-        Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.
-
-        Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-
-        Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
-
-        Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.
-
-        Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-
-        Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
-
-        Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.
-
-        Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-
-        Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
-
-        Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.
-
-        Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-
-        Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
-
-        Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.
-
-        Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-
-        Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
-
-        Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.
+        <form [formGroup]="addNewPatientForm">
+          <div class="row">
+            <div class="form-group col-md-5">
+              <label class="col-form-label">
+                <span>Nom:</span>
+                <input type="text" class="form-control" formControlName="nom">
+              </label>
+            </div>
+            <div class="form-group col-md-4">
+              <label  class="col-form-label">
+                <span>Prénom:</span>
+                <input type="text" class="form-control" formControlName="prenom">
+              </label>
+            </div>
+            <div class="form-group col-md-3" style="display: inline-block">
+              <label class="col-form-label">
+                <span>Sexe:</span>
+                <select class="form-control" formControlName="sexe">
+                  <option value="H">Homme</option>
+                  <option value="F">Femme</option>
+                </select>
+              </label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-form-label col-md-12">
+              <span>N° Sécu:</span>
+              <input type="number" class="form-control" formControlName="numSecu">
+            </label>
+          </div>
+          <div style="text-align: center">
+            <hr>
+            <span style="text-align: center; font-weight: bold">ADRESSE</span>
+          </div>
+          <div formGroupName="adresse">
+            <div class="row">
+              <div class="form-group col-sm-3">
+                <label class="col-form-label">
+                  <span>Numéro:</span>
+                  <input type="number" class="form-control" formControlName="numRue">
+                </label>
+              </div>
+              <div class="form-group col-sm-9">
+                <label class="col-form-label">
+                  <span>Rue:</span>
+                  <input type="text" class="form-control" formControlName="rue">
+                </label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-md-6">
+                <label class="col-form-label">
+                  <span>Ville:</span>
+                  <input type="text" class="form-control" formControlName="ville">
+                </label>
+              </div>
+              <div class="form-group col-md-6">
+                <label class="col-form-label">
+                  <span>Code Postal:</span>
+                  <input type="text" class="form-control" formControlName="codePostal">
+                </label>
+              </div>
+              <div class="form-group col-md-12">
+                <label class="col-form-label">
+                  <span>Étage:</span>
+                  <input type="number" min="0" class="form-control" formControlName="etage">
+                </label>
+              </div>
+            </div>
+          </div>
+        </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Annuler</button>
+        <button (click)="onSubmit()" type="submit" class="btn btn-primary">Valider</button>
       </div>
     </div>
   </div>

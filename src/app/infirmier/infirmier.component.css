@@ -22,8 +22,13 @@
   height: 80px;
 }
 
-.nurse-info > h6 {
+.row {
+  margin-left: 5px;
+  margin-right: 5px;
+}
 
+.form-group > label {
+  width: 100%;
 }
 
 .card-body {

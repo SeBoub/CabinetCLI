@@ -13,6 +13,7 @@ import { PatientComponent } from './patient/patient.component';
 import {MatGridListModule} from '@angular/material';
 import { NavigationComponent } from './navigation/navigation.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     MatToolbarModule,
     MatCardModule,
     MatGridListModule,
-    NgbModule
+    NgbModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
