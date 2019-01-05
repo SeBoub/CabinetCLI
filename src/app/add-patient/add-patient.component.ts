@@ -27,7 +27,7 @@ export class AddPatientComponent implements OnInit {
     return formBuilder.group({
       nom: ['', [Validators.required, Validators.minLength(2)]],
       prenom: ['', [Validators.required]],
-      sexe: ['H', [Validators.required]],
+      sexe: ['M', [Validators.required]],
       numSecu: ['', [Validators.required]],
       adresse: formBuilder.group({
         ville: ['', [Validators.required]],
@@ -55,6 +55,8 @@ export class AddPatientComponent implements OnInit {
     console.log(this.newPatient);
 
     await this._cms.addPatient(this.newPatient);
+
+    this.addNewPatientForm.reset();
   }
 
   createPatient(): PatientInterface {
