@@ -17,7 +17,7 @@ export class AddPatientComponent implements OnInit {
 
   private submitted = false;
 
-  constructor(private formBuilder: FormBuilder, http: HttpClient, cms: CabinetMedicalService){
+  constructor(private formBuilder: FormBuilder, http: HttpClient, cms: CabinetMedicalService) {
     this.addNewPatientForm = AddPatientComponent.createFormGroup(formBuilder);
     this._http = http;
     this._cms = cms;
@@ -31,10 +31,10 @@ export class AddPatientComponent implements OnInit {
       numSecu: ['', [Validators.required]],
       adresse: formBuilder.group({
         ville: ['', [Validators.required]],
-        codePostal: ['', [Validators.required]],
+        codePostal: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(5)]],
         rue: ['', [Validators.required]],
-        etage: ['', [Validators.required]],
-        numRue: ['', [Validators.required]]
+        etage: [''],
+        numRue: ['']
       })
     });
   }
@@ -49,7 +49,31 @@ export class AddPatientComponent implements OnInit {
       return;
     }
 
+
     this.newPatient = this.createPatient();
+
+    console.log(this.newPatient);
+
     await this._cms.addPatient(this.newPatient);
   }
+
+  createPatient(): PatientInterface {
+
+    return {
+      prenom: this.addNewPatientForm.value.prenom,
+      nom: this.addNewPatientForm.value.nom,
+      sexe: this.addNewPatientForm.value.sexe,
+      numeroSecuriteSociale: this.addNewPatientForm.value.numSecu,
+      adresse: CabinetMedicalService.getAdresseFromFormGroup(this.addNewPatientForm.value.adresse)
+    };
+  }
+
+  get f() { return this.addNewPatientForm.controls; }
+
+  get a() {
+    // @ts-ignore
+    return this.addNewPatientForm.controls.adresse.controls;
+  }
+
 }
+

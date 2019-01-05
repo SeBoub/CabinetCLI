@@ -9,47 +9,45 @@
         </button>
       </div>
       <div class="modal-body">
-        <form [formGroup]="addNewPatientForm">
+        <form [formGroup]="addNewPatientForm" (submit)="onSubmit()">
           <div class="row">
             <div class="form-group col-md-5">
               <label class="col-form-label">
                 <span>Nom:</span>
                 <input type="text" class="form-control" formControlName="nom" [ngClass]="{ 'is-invalid': submitted && f.nom.errors }">
-                <div *ngIf="submitted && f.nom.errors" class="invalid-feedback">
-                  <div *ngIf="f.nom.errors.required">Nom requis</div>
-                </div>
               </label>
+              <div *ngIf="submitted && f.nom.errors" class="invalid-feedback">
+                <div *ngIf="f.nom.errors.required">Nom requis</div>
+              </div>
             </div>
             <div class="form-group col-md-4">
               <label  class="col-form-label">
                 <span>Prénom:</span>
-                <input type="text" class="form-control" formControlName="prenom">
-                <div *ngIf="submitted && f.prenom.errors" class="invalid-feedback">
-                  <div *ngIf="f.prenom.errors.required">Prénom requis</div>
-                </div>
+                <input type="text" class="form-control" formControlName="prenom" [ngClass]="{ 'is-invalid': submitted && f.prenom.errors }">
               </label>
+              <div *ngIf="submitted && f.prenom.errors" class="invalid-feedback">
+                <div *ngIf="f.prenom.errors.required">Prénom requis</div>
+              </div>
             </div>
             <div class="form-group col-md-3" style="display: inline-block">
               <label class="col-form-label">
                 <span>Sexe:</span>
                 <select class="form-control" formControlName="sexe">
-                  <option value="H">Homme</option>
+                  <option value="M">Homme</option>
                   <option value="F">Femme</option>
                 </select>
-                <div *ngIf="submitted && f.sexe.errors" class="invalid-feedback">
-                  <div *ngIf="f.sexe.errors.required">Sexe requis</div>
-                </div>
               </label>
             </div>
           </div>
           <div class="form-group">
             <label class="col-form-label col-md-12">
               <span>N° Sécu:</span>
-              <input type="number" class="form-control" formControlName="numSecu">
-              <div *ngIf="submitted && f.numSecu.errors" class="invalid-feedback">
-                <div *ngIf="f.numSecu.errors.required">Numéro de sécu requis</div>
-              </div>
+              <input type="number" class="form-control" formControlName="numSecu" [ngClass]="{ 'is-invalid': submitted && f.numSecu.errors }">
             </label>
+            <div *ngIf="submitted && f.numSecu.errors" class="invalid-feedback error-secu">
+              <div *ngIf="f.numSecu.errors.required">Numéro de sécu requis</div>
+              <div *ngIf="f.numSecu.errors.pattern">Numéro de sécu incorrect</div>
+            </div>
           </div>
           <div style="text-align: center">
             <hr>
@@ -66,48 +64,46 @@
               <div class="form-group col-sm-9">
                 <label class="col-form-label">
                   <span>Rue:</span>
-                  <input type="text" class="form-control" formControlName="rue">
-                  <div *ngIf="submitted && f.rue.errors" class="invalid-feedback">
-                    <div *ngIf="f.rue.errors.required">Nom de rue requis</div>
-                  </div>
+                  <input type="text" class="form-control" formControlName="rue" [ngClass]="{ 'is-invalid': submitted && a.rue.errors }">
                 </label>
+                <div *ngIf="submitted && a.rue.errors" class="invalid-feedback">
+                  <div *ngIf="a.rue.errors.required">Nom de rue requis</div>
+                </div>
               </div>
             </div>
             <div class="row">
               <div class="form-group col-md-6">
                 <label class="col-form-label">
                   <span>Ville:</span>
-                  <input type="text" class="form-control" formControlName="ville">
-                  <div *ngIf="submitted && f.ville.errors" class="invalid-feedback">
-                    <div *ngIf="f.ville.errors.required">Nom de la ville requis</div>
-                  </div>
+                  <input type="text" class="form-control" formControlName="ville" [ngClass]="{ 'is-invalid': submitted && a.ville.errors }">
                 </label>
+                <div *ngIf="submitted && a.ville.errors" class="invalid-feedback">
+                  <div *ngIf="a.ville.errors.required">Nom de la ville requis</div>
+                </div>
               </div>
               <div class="form-group col-md-6">
                 <label class="col-form-label">
                   <span>Code Postal:</span>
-                  <input type="text" class="form-control" formControlName="codePostal">
-                  <div *ngIf="submitted && f.codePostal.errors" class="invalid-feedback">
-                    <div *ngIf="f.prenom.codePostal.required">Code postal requis</div>
-                  </div>
+                  <input type="text" class="form-control" formControlName="codePostal" [ngClass]="{ 'is-invalid': submitted && a.codePostal.errors }">
                 </label>
+                <div *ngIf="submitted && a.codePostal.errors" class="invalid-feedback">
+                  <div *ngIf="a.codePostal.errors.required">Code postal requis</div>
+                  <div *ngIf="a.codePostal.errors.minLength">Code postal incorrect</div>
+                </div>
               </div>
               <div class="form-group col-md-12">
                 <label class="col-form-label">
                   <span>Étage:</span>
                   <input type="number" min="0" class="form-control" formControlName="etage">
-                  <div *ngIf="submitted && f.etage.errors" class="invalid-feedback">
-                    <div *ngIf="f.etage.errors.required">Numéro d'étage requis</div>
-                  </div>
                 </label>
               </div>
             </div>
           </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Annuler</button>
+            <button type="submit" class="btn btn-primary">Valider</button>
+          </div>
         </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Annuler</button>
-        <button (click)="onSubmit()" type="submit" class="btn btn-primary">Valider</button>
       </div>
     </div>
   </div>

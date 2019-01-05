@@ -1,0 +1,17 @@
+.row {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.form-group > label {
+  width: 100%;
+}
+
+.error-secu {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.invalid-feedback {
+  display: block;
+}

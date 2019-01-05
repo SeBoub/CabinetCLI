@@ -4,7 +4,6 @@ import {CabinetInterface} from '../dataInterfaces/cabinet';
 import {Adresse} from '../dataInterfaces/adresse';
 import {sexeEnum} from '../dataInterfaces/sexe';
 import {PatientInterface} from '../dataInterfaces/patient';
-import {FormControl, FormGroup} from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -39,8 +38,8 @@ export class CabinetMedicalService {
     return {
       ville: adresse.ville,
       codePostal: adresse.codePostal,
-      rue: adresse.numRue,
-      numero: adresse.numSecu,
+      rue: adresse.rue,
+      numero: adresse.numRue,
       etage: adresse.etage,
     };
   }
@@ -106,12 +105,12 @@ export class CabinetMedicalService {
     }));
   }
 
-  public async addPatient(patient: PatientInterface): Promise<PatientInterface> {
+  public async addPatient(patient: PatientInterface) {
     const res = await this._http.post('/addPatient', {
       patientName: patient.nom,
       patientForname: patient.prenom,
       patientNumber: patient.numeroSecuriteSociale,
-      patientSex: patient.sexe === sexeEnum.M ? 'M' : 'F',
+      patientSex: patient.sexe,
       patientBirthday: 'AAAA-MM-JJ',
       patientFloor: patient.adresse.etage,
       patientStreetNumber: patient.adresse.numero,
@@ -123,8 +122,7 @@ export class CabinetMedicalService {
     console.log('Add patient renvoie', res);
     if (res.status === 200) {
       // OK on peut ajouter en local
-      this.cabinet.patientsNonAffectes.push( patient );
+      this.cabinet.patientsNonAffectes.push(patient);
     }
-    return null;
   }
 }
