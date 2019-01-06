@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {CabinetMedicalService} from '../services/cabinet-medical.service';
 import {CabinetInterface} from '../dataInterfaces/cabinet';
+import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-secretary',
@@ -10,7 +11,7 @@ import {CabinetInterface} from '../dataInterfaces/cabinet';
 export class SecretaryComponent implements OnInit {
   private data: CabinetInterface;
 
-  constructor(cms: CabinetMedicalService) {
+  constructor(private cms: CabinetMedicalService) {
     this.initCabinet(cms);
   }
 
@@ -19,6 +20,21 @@ export class SecretaryComponent implements OnInit {
   }
 
   ngOnInit() {}
+
+  drop(event: CdkDragDrop<string[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(this.nonAffect, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex);
+    }
+  }
+
+  /*drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.nonAffect, event.previousIndex, event.currentIndex);
+  }*/
 
   get infirmiers() {
     return this.data.infirmiers;

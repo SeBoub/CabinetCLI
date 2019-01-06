@@ -8,6 +8,7 @@ import {PatientInterface} from '../dataInterfaces/patient';
 })
 export class PatientComponent implements OnInit {
   @Input() patient: PatientInterface;
+  @Input() infirmierID: number;
 
   constructor() { }
 

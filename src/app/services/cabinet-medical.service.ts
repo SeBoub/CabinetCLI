@@ -57,7 +57,7 @@ export class CabinetMedicalService {
   async getData( url: string ): Promise<CabinetInterface> {
     const data = await this.http.get(url, {responseType: 'text'}).toPromise();
 
-    return new Promise<CabinetInterface>(((resolve, reject) => {
+    return new Promise<CabinetInterface>(((resolve) => {
       const parser = new DOMParser();
       const doc = parser.parseFromString(data, 'application/xml');
 
@@ -124,5 +124,14 @@ export class CabinetMedicalService {
       // OK on peut ajouter en local
       this.cabinet.patientsNonAffectes.push(patient);
     }
+  }
+
+  public async affectation(infirmierId: number, patient: PatientInterface) {
+    const res = await this._http.post( '/affectation', {
+      infirmier: infirmierId,
+      patient: patient.numeroSecuriteSociale
+    }, {observe: 'response'});
+
+    console.log('Affectation renvoie', res);
   }
 }

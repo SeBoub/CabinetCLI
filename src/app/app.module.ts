@@ -15,6 +15,7 @@ import { NavigationComponent } from './navigation/navigation.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ReactiveFormsModule} from '@angular/forms';
 import { AddPatientComponent } from './add-patient/add-patient.component';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { AddPatientComponent } from './add-patient/add-patient.component';
     MatCardModule,
     MatGridListModule,
     NgbModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    DragDropModule
   ],
   providers: [],
   bootstrap: [AppComponent]

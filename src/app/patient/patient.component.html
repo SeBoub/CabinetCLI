@@ -15,7 +15,7 @@
       <span class="patient-elem">N° sécu</span> : {{patient.numeroSecuriteSociale}}
     </p>
     <p>
-      <span class="patient-elem">Adresse</span> : <span *ngIf="patient.adresse.numero !== ''">{{patient.adresse.numero}},</span> {{patient.adresse.rue}} {{patient.adresse.ville}} {{patient.adresse.codePostal}}
+      <span class="patient-elem">Adresse</span> : <span *ngIf="patient.adresse.numero !== ''">{{patient.adresse.numero}},</span> {{patient.adresse.rue}} {{patient.adresse.codePostal}} {{patient.adresse.ville}}
     </p>
     <p *ngIf="patient.adresse.etage !== ''">
       <span *ngIf="patient.adresse.etage === '1'"><span class="patient-elem">Étage</span> : {{patient.adresse.etage}} er</span>
