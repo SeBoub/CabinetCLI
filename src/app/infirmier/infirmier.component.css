@@ -17,6 +17,10 @@
   margin-top: 20px;
 }
 
+.card-subtitle {
+  margin-bottom: 12px;
+}
+
 .nurse-info > img {
   width: 80px;
   height: 80px;

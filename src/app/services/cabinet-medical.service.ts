@@ -88,7 +88,7 @@ export class CabinetMedicalService {
 
       // Ajoute les patients non affectés, au cabinet, et ceux qui sont affectés, aux infirmiers
       patients.forEach((pat) => {
-        if (pat.querySelector('visite[intervenant]') === null) {
+        if (pat.querySelector('visite[intervenant]') === null || pat.querySelector('visite').getAttribute('intervenant') === '') {
           this.cabinet.patientsNonAffectes.push(CabinetMedicalService.getPatientFrom(pat));
         } else {
           this.cabinet.infirmiers.forEach((inf) => {
@@ -126,11 +126,11 @@ export class CabinetMedicalService {
     }
   }
 
-  public async affectation(infirmierId: number, patient: PatientInterface) {
+  public async affectation(infirmierId: string | 'none', numSecu: number) {
     const res = await this._http.post( '/affectation', {
       infirmier: infirmierId,
-      patient: patient.numeroSecuriteSociale
-    }, {observe: 'response'});
+      patient: numSecu
+    }, {observe: 'response'}).toPromise<HttpResponse<any>>();
 
     console.log('Affectation renvoie', res);
   }

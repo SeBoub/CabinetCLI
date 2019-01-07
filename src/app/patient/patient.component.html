@@ -1,10 +1,10 @@
 <div>
   <span class="patient-name" style="vertical-align: bottom">{{patient.prenom}} {{patient.nom}}</span>
-  <button class="btn" style="float: right; padding: 0" type="button" data-toggle="collapse" [attr.data-target]="'#'+patient.nom+'-'+patient.prenom" aria-expanded="false" [attr.aria-controls]="patient.nom+'-'+patient.prenom">
+  <button class="btn" style="float: right; padding: 0" type="button" data-toggle="collapse" [attr.data-target]="'#ns'+patient.numeroSecuriteSociale" aria-expanded="false" [attr.aria-controls]="patient.nom+'-'+patient.prenom">
     <i class="fas fa-chevron-down"></i>
   </button>
 </div>
-<div class="collapse"  id="{{patient.nom}}-{{patient.prenom}}">
+<div class="collapse"  [id]="'ns'+patient.numeroSecuriteSociale">
   <div style="color: darkgrey">
     <p>
       <span class="patient-elem">Sexe</span> :

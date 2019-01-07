@@ -23,18 +23,17 @@ export class SecretaryComponent implements OnInit {
 
   drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
-      moveItemInArray(this.nonAffect, event.previousIndex, event.currentIndex);
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
       transferArrayItem(event.previousContainer.data,
         event.container.data,
         event.previousIndex,
         event.currentIndex);
     }
-  }
 
-  /*drop(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.nonAffect, event.previousIndex, event.currentIndex);
-  }*/
+    // @ts-ignore
+    this.cms.affectation('none', event.container.data[event.currentIndex].numeroSecuriteSociale);
+  }
 
   get infirmiers() {
     return this.data.infirmiers;

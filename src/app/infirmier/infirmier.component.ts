@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {InfirmierInterface} from '../dataInterfaces/infirmier';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+import {CabinetMedicalService} from '../services/cabinet-medical.service';
 
 @Component({
   selector: 'app-infirmier',
@@ -10,7 +11,7 @@ import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag
 export class InfirmierComponent implements OnInit {
   @Input() infirmier: InfirmierInterface;
 
-  constructor() {}
+  constructor(private cms: CabinetMedicalService) {}
 
   ngOnInit() {
 
@@ -25,11 +26,10 @@ export class InfirmierComponent implements OnInit {
         event.previousIndex,
         event.currentIndex);
     }
-  }
 
-  /*drop(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.patients, event.previousIndex, event.currentIndex);
-  }*/
+    // @ts-ignore
+    this.cms.affectation(event.container.id, event.container.data[event.currentIndex].numeroSecuriteSociale);
+  }
 
   get picture() {
     return '/data/' + this.infirmier.photo;

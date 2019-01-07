@@ -1,9 +1,10 @@
-<div class="card" [cdkDropListData]="patients" (cdkDropListDropped)="drop($event)" cdkDropList>
+<div class="card" [cdkDropListData]="patients" (cdkDropListDropped)="drop($event)" [id]="infirmier.id" cdkDropList>
   <div class="nurse-info">
     <img [src]="picture" class="card-img-top" alt="Infirmier image">
     <div class="nurse-name">
       <h5 class="card-title">{{infirmier.prenom}}</h5>
       <h6 class="card-subtitle text-muted">{{infirmier.nom}}</h6>
+      <h6 class="card-subtitle text-muted" [id]="infirmier.id">ID : {{infirmier.id}}</h6>
     </div>
   </div>
   <div class="card-body">
@@ -14,7 +15,7 @@
   </div>
   <ul class="list-group list-group-flush" >
     <li class="list-group-item" *ngFor="let patient of patients" cdkDrag>
-      <app-patient [patient]="patient" [infirmierID]="infirmier.id"></app-patient>
+      <app-patient [patient]="patient"></app-patient>
     </li>
   </ul>
 </div>
