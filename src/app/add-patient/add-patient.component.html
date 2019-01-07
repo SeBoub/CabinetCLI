@@ -42,11 +42,11 @@
           <div class="form-group">
             <label class="col-form-label col-md-12">
               <span>N° Sécu:</span>
-              <input type="number" class="form-control" formControlName="numSecu" [ngClass]="{ 'is-invalid': submitted && f.numSecu.errors }">
+              <input type="text" class="form-control" formControlName="numSecu" [ngClass]="{ 'is-invalid': submitted && f.numSecu.errors }">
             </label>
             <div *ngIf="submitted && f.numSecu.errors" class="invalid-feedback error-secu">
               <div *ngIf="f.numSecu.errors.required">Numéro de sécu requis</div>
-              <div *ngIf="f.numSecu.errors.pattern">Numéro de sécu incorrect</div>
+              <div *ngIf="f.numSecu.errors.pattern">Le pattern n'est pas respecté</div>
             </div>
           </div>
           <div style="text-align: center">
@@ -88,19 +88,19 @@
                 </label>
                 <div *ngIf="submitted && a.codePostal.errors" class="invalid-feedback">
                   <div *ngIf="a.codePostal.errors.required">Code postal requis</div>
-                  <div *ngIf="a.codePostal.errors.minLength">Code postal incorrect</div>
+                  <div *ngIf="a.codePostal.errors.pattern">Code postal incorrect</div>
                 </div>
               </div>
               <div class="form-group col-md-12">
                 <label class="col-form-label">
                   <span>Étage:</span>
-                  <input type="number" min="0" class="form-control" formControlName="etage">
+                  <input type="text" class="form-control" formControlName="etage">
                 </label>
               </div>
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-dismiss="modal">Annuler</button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Fermer</button>
             <button type="submit" class="btn btn-primary">Valider</button>
           </div>
         </form>

@@ -28,10 +28,10 @@ export class AddPatientComponent implements OnInit {
       nom: ['', [Validators.required, Validators.minLength(2)]],
       prenom: ['', [Validators.required]],
       sexe: ['M', [Validators.required]],
-      numSecu: ['', [Validators.required]],
+      numSecu: ['', [Validators.required, Validators.pattern('[1-4]\\d\\d((0[1-9])|(1[0-2]))\\d[0-9AB]\\d{8}')]],
       adresse: formBuilder.group({
         ville: ['', [Validators.required]],
-        codePostal: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(5)]],
+        codePostal: ['', [Validators.required, Validators.pattern('\\d{5}')]],
         rue: ['', [Validators.required]],
         etage: [''],
         numRue: ['']
@@ -43,6 +43,7 @@ export class AddPatientComponent implements OnInit {
   }
 
   async onSubmit() {
+
     this.submitted = true;
 
     if (this.addNewPatientForm.invalid) {
@@ -53,6 +54,8 @@ export class AddPatientComponent implements OnInit {
 
     await this._cms.addPatient(this.newPatient);
 
+
+    this.submitted = false;
     this.addNewPatientForm.reset();
 
   }
@@ -74,6 +77,5 @@ export class AddPatientComponent implements OnInit {
     // @ts-ignore
     return this.addNewPatientForm.controls.adresse.controls;
   }
-
 }
 
