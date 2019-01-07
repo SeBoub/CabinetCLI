@@ -49,14 +49,12 @@ export class AddPatientComponent implements OnInit {
       return;
     }
 
-
     this.newPatient = this.createPatient();
-
-    console.log(this.newPatient);
 
     await this._cms.addPatient(this.newPatient);
 
     this.addNewPatientForm.reset();
+
   }
 
   createPatient(): PatientInterface {
