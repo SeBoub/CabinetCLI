@@ -7,7 +7,9 @@ Pour lancer l'application, il est nécessaire de lancer le serveur en premier li
 puissent se faire correctement, dans le cas contraire l'application sera dénuée de toutes données.
 
 ## Used technologies
-Les technologies utilisées pour cette applications sont `Bootstrap` et `cdkDragDrop` de Angular Material.
+Les technologies utilisées pour cette applications sont `Bootstrap` et `cdkDragDrop` de Angular Material. 
+Un CDN a été utilisé pour Bootstrap, il est donc nécessaire de disposer d'une connexion internet afin 
+d'avoir les styles appropriés. 
 
 ## Features
 
